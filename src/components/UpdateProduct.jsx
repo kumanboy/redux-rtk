@@ -1,15 +1,16 @@
 import {useUpdateProductMutation} from "../app/services/dummydata.js";
+import React from "react";
 
 const UpdateProduct = ({ productId }) => {
-    const [updateProduct, { data, error, isLoading }] =
+    const [updateProduct, { data, isError, isLoading }] =
         useUpdateProductMutation();
 
-    if (error) {
-        return <h1>{error}</h1>;
+    if (isError) {
+        return <h1>Error</h1>
     }
 
     if (isLoading) {
-        return <h1>Loading...</h1>;
+        return <h1>Loading...</h1>
     }
 
     const handleUpdateProduct = async () => {
