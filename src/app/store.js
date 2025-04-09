@@ -1,8 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
-import counterSlice from "./features/counter/counterSlice.js";
+import {setupListeners} from "@reduxjs/toolkit/query";
+import {productsApi} from "./services/dummydata.js";
+
 
 export const store = configureStore({
     reducer:{
-        counter:counterSlice,
-    }
+        [productsApi.reducerPath]: productsApi.reducer
+    },
+    middleware:(getDefaultMiddleware) => getDefaultMiddleware().concat(productsApi.middleware)
 })
+
+setupListeners(store.dispatch)
