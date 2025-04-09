@@ -1,12 +1,14 @@
 import React from 'react'
-import SpecificProduct from "./components/SpecificProduct.jsx";
+// import SpecificProduct from "./components/SpecificProduct.jsx";
+import AddNewProduct from "./components/AddNewProduct.jsx";
 // import AllProducts from "./components/AllProducts.jsx";
 
 const App = () => {
     return (
         <>
             {/*<AllProducts/>*/}
-            <SpecificProduct/>
+            {/*<SpecificProduct/>*/}
+            <AddNewProduct/>
         </>
     )
 }

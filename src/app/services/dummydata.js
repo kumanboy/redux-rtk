@@ -1,5 +1,7 @@
 import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
+// https://dummyjson.com/
+
 export const productsApi = createApi({
     reducerPath: "products",
     baseQuery:fetchBaseQuery({
@@ -11,8 +13,24 @@ export const productsApi = createApi({
         }),
         getProductById: builder.query({
             query: (id)=> `/products/${id}`,
-        })
+        }),
+        addNewProduct: builder.mutation({
+            query: (newProduct) =>({
+                url:`/product/add`,
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: newProduct
+            })
+        }),
+        updateProduct: builder.mutation({
+            query: ({ id, updatedProduct }) => ({
+                url: `/products/${id}`,
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: updatedProduct,
+            }),
+        }),
     })
 })
 
-export const {useGetAllProductQuery,useGetProductByIdQuery} = productsApi
+export const {useGetAllProductQuery,useGetProductByIdQuery,useAddNewProductMutation,useUpdateProduct} = productsApi
